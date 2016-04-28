@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+	<head>
+		<script>
+			window.nodeRequire = require;
+			window.nodeExports = window.exports;
+			window.nodeModule = module;
+			delete window.require;
+			delete window.exports;
+			delete window.module;
+			
+		</script>
+
+		<script src="../node_modules/angular/angular.js"></script>
+
+		<meta charset='utf-8'>
+
+		<title>Marks</title>
+
+		<!-- Library CSS -->
+		<link href='../css/bootstrap-darkly.min.css' rel='stylesheet'>
+		<link href='../css/jquery-ui.min.css' rel='stylesheet'>
+		<link rel="stylesheet" href="../node_modules/jquery-treegrid/css/jquery.treegrid.css">
+
+		<!-- Custom CSS -->
+		<link href='../css/app.css' rel='stylesheet'>
+
+		<!--<link rel="icon" type="image/png" href="favicon.ico"/>-->
+	</head>
+
+	<body>
+		<!-- Modals -->
+		<div class="modal fade" id="modal-settings" tabindex="-1" role="dialog" aria-labelledby="modal-settings-label">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="modal-settings-label">Settings</h4>
+					</div>
+					<div class="modal-body">
+						Settings.
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="modal-help" tabindex="-1" role="dialog" aria-labelledby="modal-help-label">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="modal-help-label">Help</h4>
+					</div>
+					<div class="modal-body">
+						Help
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<div class="dropdown header-dropdown">
+						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sample Gradebook</a>
+						<ul class="dropdown-menu">
+							<li><a href="#!">New Gradebook</a></li>
+							<li><a href="#!">Open Gradebook</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#!">Save Gradebook</a></li>
+							<li><a href="#!">Save Gradebook As...</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<div class="btn-group navbar-btn navbar-right" style="margin-left: 5px">
+						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-help">
+							<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+							<span class="sr-only">Help</span>
+						</button>
+						<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Help Dropdown</span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="#!" class="shortcut">In-app Help</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#!">Report a Bug</a></li>
+							<li><a href="#!">About Marks</a></li>
+						</ul>
+					</div>
+					<div class="btn-group navbar-btn navbar-right">
+						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-settings">
+							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+							<span class="sr-only">Settings</span>
+						</button>
+						<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Settings Dropdown</span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="#!">Gradebook Settings</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#!" class="shortcut">Marks Settings</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container -->
+		</nav>
+		
+		<div id="splitter-sidebar"></div>
+		
+		<!-- Page Content -->
+    <div class="container-fluid">
+			<div id="sidebar">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">Info</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-4" style="text-align: right">
+								Name<br>
+							</div>
+							<div class="col-xs-8">
+								Sample Gradebook<br>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Classes</h3>
+					</div>
+					<div class="panel-body">
+						<table class="table table-hover class-list">
+							<thead>
+								<th>Name</th>
+								<th>Target</th>
+							</thead>
+							<tr>
+								<td><span class="badge">75%</span>EECS 370</td>
+								<td>90%</td>
+							</tr>
+							<tr>
+								<td><span class="badge">93%</span>EECS 376</td>
+								<td>90%</td>
+							</tr>
+							<tr>
+								<td><span class="badge">84%</span>MATH 214</td>
+								<td>90%</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="class-view">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">EECS 370</h3>
+					</div>
+					<div class="panel-body">
+						<table class="tree table table-hover">
+							<tr class="treegrid-1">
+								<td>Homework</td>
+							</tr>
+							<tr class="treegrid-2 treegrid-parent-1">
+								<td>Getting Started</td>
+							</tr>
+							<tr class="treegrid-3">
+								<td>Exams</td>
+							</tr>
+							<tr class="treegrid-4 treegrid-parent-3">
+								<td>Final</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- jQuery -->
+		<script src='../lib/jquery-2.2.3.min.js'></script>
+		<!-- jQuery UI -->
+		<script src='../lib/jquery-ui.min.js'></script>
+		<!-- Bootstrap Core -->
+		<script src='../lib/bootstrap.min.js'></script>
+		<!-- Underscore.js -->
+		<script src='../lib/underscore-min.js'></script>
+		<!-- Mustache.js -->
+		<script src='../lib/mustache.min.js'></script>
+		<!-- ResizeSensor -->
+		<script src='../lib/ResizeSensor.js'></script>
+		<!-- jQuery Treegrid -->
+		<script type="text/javascript" src="../node_modules/jquery-treegrid/js/jquery.treegrid.js"></script>
+		<script type="text/javascript" src="../node_modules/jquery-treegrid/js/jquery.treegrid.bootstrap3.js"></script>
+
+		<!-- Companion JS -->
+		<script src="../js/MainWin.js"></script>
+	</body>
+</html>

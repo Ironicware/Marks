@@ -1,0 +1,24 @@
+{
+  "name": "Marks",
+  "version": "0.1.0",
+  "description": "The Electron-based successor to BareMinimum.",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ironicware/Marks.git"
+  },
+  "keywords": [
+    "gradebook"
+  ],
+  "author": "Alex House",
+  "license": "GPL v2",
+  "devDependencies": {
+    "electron-prebuilt": "^0.37.0"
+  },
+  "dependencies": {
+    "electron-localshortcut": "^0.6.0"
+  }
+}
